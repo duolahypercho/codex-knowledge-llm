@@ -30,6 +30,40 @@ projects/
 - Daily session summary workflow
 - Optional Graphify workflow docs for turning the vault into a queryable graph
 
+## Install Into Codex
+
+Clone or download this repo, then run:
+
+```bash
+python3 scripts/install-codex-plugin.py
+```
+
+On Windows:
+
+```powershell
+python scripts\install-codex-plugin.py
+```
+
+This installs a local plugin copy to:
+
+```text
+~/plugins/codex-knowledge-llm
+```
+
+And registers it in:
+
+```text
+~/.agents/plugins/marketplace.json
+```
+
+If you already installed it and want to replace the local copy:
+
+```bash
+python3 scripts/install-codex-plugin.py --force
+```
+
+Restart Codex if the plugin does not appear immediately.
+
 ## Embed The Vault Kit
 
 macOS / Linux:
