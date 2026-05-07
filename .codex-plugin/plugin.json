@@ -1,0 +1,41 @@
+{
+  "name": "codex-knowledge-llm",
+  "version": "0.1.0",
+  "description": "Turn source material into an Obsidian-ready knowledge vault with Codex workflows, reusable notes, and daily summaries.",
+  "author": {
+    "name": "ziwenxu",
+    "email": "support@example.com",
+    "url": "https://github.com/ziwenxu"
+  },
+  "homepage": "https://github.com/ziwenxu/codex-knowledge-llm",
+  "repository": "https://github.com/ziwenxu/codex-knowledge-llm",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "obsidian",
+    "knowledge-vault",
+    "llm",
+    "second-brain"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Codex Knowledge LLM",
+    "shortDescription": "Convert anything into an Obsidian knowledge vault.",
+    "longDescription": "Codex Knowledge LLM bundles a Codex skill and vault kit for ingesting articles, X posts, YouTube transcripts, book notes, PDFs-as-text, Readwise exports, Kindle notes, and automation captures into a structured Obsidian knowledge system.",
+    "developerName": "ziwenxu",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/ziwenxu/codex-knowledge-llm",
+    "privacyPolicyURL": "https://github.com/ziwenxu/codex-knowledge-llm",
+    "termsOfServiceURL": "https://github.com/ziwenxu/codex-knowledge-llm",
+    "defaultPrompt": [
+      "Turn this source into Obsidian notes.",
+      "Create a daily session summary.",
+      "Embed the vault kit into this folder."
+    ],
+    "brandColor": "#2563EB"
+  }
+}

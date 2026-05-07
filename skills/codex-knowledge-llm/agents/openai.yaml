@@ -1,0 +1,3 @@
+display_name: Codex Knowledge LLM
+short_description: Convert anything into Obsidian knowledge notes.
+default_prompt: Turn this source into Obsidian notes.
