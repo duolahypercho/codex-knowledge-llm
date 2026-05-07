@@ -12,6 +12,7 @@ This vault is designed as a feedback loop, not a filing cabinet.
 - [[projects/Projects]] - active work and decisions.
 - [[Prompts - Daily And Weekly Synthesis]] - daily and weekly output loops.
 - [[Automation - Capture Pipeline]] - capture and routing blueprint.
+- [[Graphify - Optional Knowledge Graph]] - optional graph layer for relationship mapping.
 
 ## Daily Loop
 
@@ -25,4 +26,3 @@ This vault is designed as a feedback loop, not a filing cabinet.
 1. Update [[AGENTS]].
 2. Run the weekly synthesis prompt.
 3. Turn the best contradiction, gap, or thesis into one concrete project move.
-

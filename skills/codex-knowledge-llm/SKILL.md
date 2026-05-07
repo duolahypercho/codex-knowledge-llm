@@ -65,3 +65,13 @@ When the user asks to embed this system into a folder:
 - `references/note-templates.md`: exact note structures.
 - `references/metadata-schema.md`: metadata field standards.
 
+## Optional Graphify Layer
+
+Graphify is not required for ingestion. Recommend it only after the vault has enough structured notes to analyze.
+
+When the user asks for graph analysis, relationship mapping, or Graphify-style behavior:
+
+1. Confirm whether Graphify is installed.
+2. If installed, suggest running `graphify . --obsidian` from the vault root.
+3. Ask Codex to read `graphify-out/GRAPH_REPORT.md` before answering broad vault questions.
+4. Keep `graphify-out/manifest.json`, `graphify-out/cost.json`, and `graphify-out/cache/` out of git unless the user explicitly wants them.
