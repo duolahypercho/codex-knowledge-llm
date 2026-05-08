@@ -27,6 +27,27 @@ Use this skill to turn source material into structured Obsidian notes and to mai
 4. Use templates from `references/note-templates.md`.
 5. Use metadata rules from `references/metadata-schema.md`.
 
+## Preferred Helper Script
+
+When this plugin repo is available locally and the user provides a local source file, prefer the note-pack helper:
+
+```bash
+python scripts/create-note-pack.py --vault <vault-folder> --input <source-file> --owner <owner> --route auto
+```
+
+Use explicit routes when the user names the source type:
+
+```bash
+python scripts/create-note-pack.py --vault <vault-folder> --input <source-file> --owner <owner> --route persuasive
+python scripts/create-note-pack.py --vault <vault-folder> --input <source-file> --owner <owner> --route tutorial
+python scripts/create-note-pack.py --vault <vault-folder> --input <source-file> --owner <owner> --route transcript
+python scripts/create-note-pack.py --vault <vault-folder> --input <source-file> --owner <owner> --route book
+```
+
+After running the helper, review the generated notes and improve the analysis with source-specific reasoning when needed. The helper creates a complete first pass; Codex should still add judgment when the user wants a polished synthesis.
+
+For pasted source material, create a temporary `.md` file only when that is the cleanest way to use the helper. Otherwise, write the note pack directly using the templates.
+
 ## Source Routes
 
 - Persuasive X posts and persuasive articles: create Original, Index, and Structure Teardown.
@@ -53,6 +74,7 @@ Use the template in `references/note-templates.md`.
 When the user asks to embed this system into a folder:
 
 1. Use the repo scripts if available:
+   - One command: `scripts/onboard.py --install --vault <folder> --owner <name>`
    - PowerShell: `scripts/init-vault-kit.ps1 -TargetPath <folder> -Owner <name>`
    - Python: `scripts/init-vault-kit.py --target <folder> --owner <name>`
 2. Skip existing files unless the user explicitly asks to overwrite.

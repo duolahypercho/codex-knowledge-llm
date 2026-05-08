@@ -8,3 +8,9 @@ Each folder contains:
 - `output/` - the Obsidian notes Codex should create after applying the skill.
 
 The examples are intentionally short. Real source material can be much longer; the same routes still apply.
+
+## Included Examples
+
+- `report/` - sample launch-report input for the local demo command.
+- `persuasive-post/` - persuasive X post route with Original, Index, and Structure Teardown notes.
+- `tutorial/` - tutorial route with Implementation Notes.

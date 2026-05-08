@@ -40,6 +40,31 @@ ideas/
 
 See [`examples/`](examples/) for sample inputs and generated notes.
 
+## Demo It Locally
+
+Create a throwaway vault and ingest the sample report:
+
+```bash
+mkdir .tmp-tests/demo-vault
+python scripts/init-vault-kit.py --target .tmp-tests/demo-vault --owner your-name
+python scripts/create-note-pack.py --vault .tmp-tests/demo-vault --input examples/report/input.md --owner your-name --route persuasive --source "X article"
+```
+
+On Windows PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force -Path .tmp-tests\demo-vault
+python scripts\init-vault-kit.py --target .tmp-tests\demo-vault --owner your-name
+python scripts\create-note-pack.py --vault .tmp-tests\demo-vault --input examples\report\input.md --owner your-name --route persuasive --source "X article"
+```
+
+Generated notes appear in:
+
+```text
+.tmp-tests/demo-vault/notes/
+.tmp-tests/demo-vault/ideas/
+```
+
 ## One-Command Onboarding
 
 Clone or download this repo, then run:
@@ -99,6 +124,12 @@ Turn this transcript into a concept synthesis.
 Create today's session summary.
 ```
 
+If the source is already saved as a local file, you can run the generator directly:
+
+```bash
+python scripts/create-note-pack.py --vault /path/to/vault --input /path/to/source.md --owner your-name --route auto
+```
+
 ## Source Routes
 
 - Persuasive articles and X posts become Original, Index, and Structure Teardown notes.
@@ -113,6 +144,7 @@ Create today's session summary.
 - Bundled skill: `skills/codex-knowledge-llm`
 - Vault kit templates: `templates/vault-kit`
 - One-command onboarding script: `scripts/onboard.py`
+- Note-pack generator: `scripts/create-note-pack.py`
 - Local plugin installer: `scripts/install-codex-plugin.py`
 - Vault initializer: `scripts/init-vault-kit.py`
 - Smoke test: `scripts/smoke-test.py`

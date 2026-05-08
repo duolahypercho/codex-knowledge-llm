@@ -66,6 +66,30 @@ def main() -> int:
     plugin_names = [plugin["name"] for plugin in data["plugins"]]
     assert "codex-knowledge-llm" in plugin_names
 
+    source = ROOT / "examples" / "report" / "input.md"
+    run(
+        [
+            sys.executable,
+            "scripts/create-note-pack.py",
+            "--vault",
+            str(vault),
+            "--input",
+            str(source),
+            "--owner",
+            "test-owner",
+            "--route",
+            "persuasive",
+            "--source",
+            "X article",
+        ]
+    )
+    assert_exists(vault / "notes" / "Compounding AI Context - Original.md")
+    assert_exists(vault / "notes" / "Compounding AI Context - Index.md")
+    assert_exists(vault / "ideas" / "Compounding AI Context - Structure Teardown.md")
+    assert "[[Compounding AI Context - Index]]" in (vault / "Home.md").read_text(
+        encoding="utf-8"
+    )
+
     print("Smoke test passed.")
     return 0
 
