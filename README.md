@@ -2,15 +2,64 @@
 
 Codex Knowledge LLM is a Codex plugin and Obsidian vault kit for turning source material into a living knowledge system.
 
-It helps Codex ingest articles, X posts, YouTube transcripts, book notes, PDFs-as-text, Readwise exports, Kindle notes, and automation captures into clean Obsidian notes.
+Install once. Open Codex in your vault. Paste any source. Get structured Obsidian notes that compound over time.
+
+It helps Codex ingest articles, X posts, YouTube transcripts, book notes, PDFs-as-text, Readwise exports, Kindle notes, tutorials, and automation captures into clean Markdown notes.
 
 Inspired by the workflow clarity of [Graphify](https://github.com/safishamsi/graphify): point a tool at a folder, generate useful knowledge artifacts, then let your AI assistant navigate from those artifacts instead of starting cold.
 
-```bash
-python scripts/init-vault-kit.py --target /path/to/your/folder --owner your-name
+## The Workflow
+
+```text
+source material
+  -> Codex classifies the source
+  -> Codex creates an Obsidian note pack
+  -> Home.md links the index note
+  -> future Codex sessions read the vault before reasoning
 ```
 
-That's it. Your folder gets an Obsidian-ready vault kit:
+Example output for a persuasive X post or article:
+
+```text
+notes/
+  Ai Memory - Original.md
+  Ai Memory - Index.md
+ideas/
+  Ai Memory - Structure Teardown.md
+```
+
+Example output for an implementation tutorial:
+
+```text
+notes/
+  Set Up A Local Knowledge Vault - Original.md
+  Set Up A Local Knowledge Vault - Index.md
+ideas/
+  Set Up A Local Knowledge Vault - Implementation Notes.md
+```
+
+See [`examples/`](examples/) for sample inputs and generated notes.
+
+## One-Command Onboarding
+
+Clone or download this repo, then run:
+
+```bash
+python scripts/onboard.py --install --vault /path/to/your/vault --owner your-name
+```
+
+On Windows:
+
+```powershell
+python scripts\onboard.py --install --vault C:\path\to\your\vault --owner your-name
+```
+
+This does two things:
+
+- Installs and registers the local Codex plugin.
+- Embeds the Obsidian-ready vault kit into your selected folder.
+
+Your folder gets:
 
 ```text
 AGENTS.md
@@ -21,21 +70,61 @@ ideas/
 projects/
 ```
 
+Restart Codex if the plugin does not appear immediately.
+
+## How To Use It
+
+After onboarding, open Codex in your vault folder and ask:
+
+```text
+Turn this source into Obsidian notes.
+```
+
+Then paste an article, X post, transcript, tutorial, book notes, or extracted PDF text.
+
+Codex will:
+
+- Read `AGENTS.md` for owner and vault context.
+- Check `Home.md`, `notes/`, and `ideas/` for duplicates.
+- Classify the source type.
+- Create the right note pack.
+- Link the source index note from `Home.md`.
+
+Useful prompts:
+
+```text
+Turn this X post into Obsidian notes.
+Turn this tutorial into implementation notes.
+Turn this transcript into a concept synthesis.
+Create today's session summary.
+```
+
+## Source Routes
+
+- Persuasive articles and X posts become Original, Index, and Structure Teardown notes.
+- Tutorials become Original, Index, and Implementation Notes.
+- YouTube transcripts and podcasts become Original, Index, and Concept Synthesis.
+- Book notes become Original, Index, and Book Notes.
+- Raw captures can land in `inbox/`.
+
 ## What It Includes
 
 - Codex plugin manifest: `.codex-plugin/plugin.json`
 - Bundled skill: `skills/codex-knowledge-llm`
 - Vault kit templates: `templates/vault-kit`
-- Install scripts for embedding the vault kit into any folder
-- Daily session summary workflow
-- Optional Graphify workflow docs for turning the vault into a queryable graph
+- One-command onboarding script: `scripts/onboard.py`
+- Local plugin installer: `scripts/install-codex-plugin.py`
+- Vault initializer: `scripts/init-vault-kit.py`
+- Smoke test: `scripts/smoke-test.py`
+- Example source-to-note packs: `examples/`
+- Optional Graphify workflow docs
 
-## Install Into Codex
+## Install Only
 
-Clone or download this repo, then run:
+If you only want to install the Codex plugin:
 
 ```bash
-python3 scripts/install-codex-plugin.py
+python scripts/install-codex-plugin.py
 ```
 
 On Windows:
@@ -59,80 +148,58 @@ And registers it in:
 If you already installed it and want to replace the local copy:
 
 ```bash
-python3 scripts/install-codex-plugin.py --force
+python scripts/install-codex-plugin.py --force
 ```
 
-Restart Codex if the plugin does not appear immediately.
-
-## Embed The Vault Kit
+## Embed The Vault Kit Only
 
 macOS / Linux:
 
 ```bash
-python3 scripts/init-vault-kit.py --target ~/Documents/MyVault --owner ziwenxu
+python scripts/init-vault-kit.py --target ~/Documents/MyVault --owner your-name
 ```
 
 PowerShell:
 
 ```powershell
-.\scripts\init-vault-kit.ps1 -TargetPath C:\path\to\vault -Owner ziwenxu
-```
-
-Python:
-
-```bash
-python scripts/init-vault-kit.py --target /path/to/vault --owner ziwenxu
+.\scripts\init-vault-kit.ps1 -TargetPath C:\path\to\vault -Owner your-name
 ```
 
 Existing files are skipped by default.
 
 Overwrite only when intentional:
 
-```powershell
-.\scripts\init-vault-kit.ps1 -TargetPath C:\path\to\vault -Owner ziwenxu -Force
+```bash
+python scripts/init-vault-kit.py --target /path/to/vault --owner your-name --force
 ```
+
+```powershell
+.\scripts\init-vault-kit.ps1 -TargetPath C:\path\to\vault -Owner your-name -Force
+```
+
+## Verify The Repo
+
+Run the smoke test:
 
 ```bash
-python scripts/init-vault-kit.py --target /path/to/vault --owner ziwenxu --force
+python scripts/smoke-test.py
 ```
 
-## Use The Skill
+It validates the plugin manifest, embeds a temporary vault kit, installs the plugin into a temporary marketplace, and checks that the expected files exist.
 
-After installing the plugin or copying the skill into Codex, ask:
+## Why Not Just Use Obsidian Templates?
 
-```text
-Turn this source into Obsidian notes.
-```
+Templates give you empty note shapes.
 
-The skill routes sources by type:
+Codex Knowledge LLM gives Codex an operating system for deciding what kind of note to create, where it belongs, how to preserve source metadata, how to avoid duplicates, and how to make the result useful in future sessions.
 
-- Persuasive articles and X posts become Original, Index, and Structure Teardown notes.
-- Tutorials become Original, Index, and Implementation Notes.
-- YouTube transcripts become Original, Index, and Concept Synthesis.
-- Book notes become Original, Index, and Book Notes.
-- Raw captures can land in `inbox`.
-
-## Daily Session Summary
-
-Ask Codex:
-
-```text
-Create today's session summary.
-```
-
-Codex writes:
-
-```text
-inbox/session-summary-YYYY-MM-DD.md
-```
-
-The summary includes what changed, decisions, open questions, next actions, and related notes.
+The goal is not prettier notes. The goal is compounding context.
 
 ## Notes
 
 V1 does not fetch remote content automatically. Provide the article text, transcript, book notes, or extracted PDF text to Codex.
 
-Graphify is intentionally deferred. Add it later when your vault contains enough structured notes to benefit from graph analysis.
+Graphify is intentionally optional. Add it later when your vault contains enough structured notes to benefit from graph analysis.
 
 ## Optional: Add Graphify
 
@@ -162,3 +229,7 @@ Recommended flow:
 3. Ask Codex to read `GRAPH_REPORT.md` before answering vault-level questions.
 
 Graphify is an optional analysis layer, not required for basic vault use.
+
+## License
+
+MIT. See [`LICENSE`](LICENSE).
