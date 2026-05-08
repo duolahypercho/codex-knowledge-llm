@@ -40,6 +40,12 @@ ideas/
 
 See [`examples/`](examples/) for sample inputs and generated notes.
 
+## Easiest Install
+
+The easiest path is to give your Codex agent this GitHub repo and ask it to install the plugin for you.
+
+Use the copy-paste guide in [`INSTALL_WITH_CODEX.md`](INSTALL_WITH_CODEX.md).
+
 ## Demo It Locally
 
 Create a throwaway vault and ingest the sample report:
